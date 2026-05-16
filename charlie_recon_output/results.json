@@ -1,0 +1,945 @@
+{
+  "meta": {
+    "tool": "Recon47",
+    "version": "1.0.0",
+    "author": "Xaff",
+    "scan_date": "2026-05-17 02:22:47",
+    "scan_timestamp": "2026-05-17T02:22:47.680036",
+    "threads": 10,
+    "timeout": 8
+  },
+  "target": {
+    "raw_input": "scanme.nmap.org",
+    "domain": "scanme.nmap.org",
+    "ip": "45.33.32.156",
+    "url": "http://scanme.nmap.org",
+    "scheme": "http",
+    "target_type": "domain"
+  },
+  "reconnaissance": {
+    "subdomains": [
+      {
+        "subdomain": "scanme.nmap.org",
+        "ip": "45.33.32.156",
+        "status": "active"
+      }
+    ],
+    "ports": [
+      {
+        "port": 21,
+        "state": "closed",
+        "service": "FTP",
+        "banner": ""
+      },
+      {
+        "port": 22,
+        "state": "open",
+        "service": "SSH",
+        "banner": "SSH-2.0-OpenSSH_6.6.1p1 Ubuntu-2ubuntu2.13\r"
+      },
+      {
+        "port": 23,
+        "state": "closed",
+        "service": "Telnet",
+        "banner": ""
+      },
+      {
+        "port": 25,
+        "state": "closed",
+        "service": "SMTP",
+        "banner": ""
+      },
+      {
+        "port": 53,
+        "state": "closed",
+        "service": "DNS",
+        "banner": ""
+      },
+      {
+        "port": 80,
+        "state": "open",
+        "service": "HTTP",
+        "banner": "HTTP/1.1 200 OK\r"
+      },
+      {
+        "port": 110,
+        "state": "closed",
+        "service": "POP3",
+        "banner": ""
+      },
+      {
+        "port": 111,
+        "state": "closed",
+        "service": "RPCBind",
+        "banner": ""
+      },
+      {
+        "port": 135,
+        "state": "closed",
+        "service": "MSRPC",
+        "banner": ""
+      },
+      {
+        "port": 139,
+        "state": "closed",
+        "service": "NetBIOS",
+        "banner": ""
+      },
+      {
+        "port": 143,
+        "state": "closed",
+        "service": "IMAP",
+        "banner": ""
+      },
+      {
+        "port": 161,
+        "state": "closed",
+        "service": "SNMP",
+        "banner": ""
+      },
+      {
+        "port": 162,
+        "state": "closed",
+        "service": "SNMP-Trap",
+        "banner": ""
+      },
+      {
+        "port": 179,
+        "state": "closed",
+        "service": "BGP",
+        "banner": ""
+      },
+      {
+        "port": 199,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 389,
+        "state": "closed",
+        "service": "LDAP",
+        "banner": ""
+      },
+      {
+        "port": 443,
+        "state": "closed",
+        "service": "HTTPS",
+        "banner": ""
+      },
+      {
+        "port": 445,
+        "state": "closed",
+        "service": "SMB",
+        "banner": ""
+      },
+      {
+        "port": 465,
+        "state": "closed",
+        "service": "SMTPS",
+        "banner": ""
+      },
+      {
+        "port": 512,
+        "state": "closed",
+        "service": "rexec",
+        "banner": ""
+      },
+      {
+        "port": 513,
+        "state": "closed",
+        "service": "rlogin",
+        "banner": ""
+      },
+      {
+        "port": 514,
+        "state": "closed",
+        "service": "syslog",
+        "banner": ""
+      },
+      {
+        "port": 515,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 548,
+        "state": "closed",
+        "service": "AFP",
+        "banner": ""
+      },
+      {
+        "port": 554,
+        "state": "closed",
+        "service": "RTSP",
+        "banner": ""
+      },
+      {
+        "port": 587,
+        "state": "closed",
+        "service": "Submission",
+        "banner": ""
+      },
+      {
+        "port": 631,
+        "state": "closed",
+        "service": "IPP",
+        "banner": ""
+      },
+      {
+        "port": 636,
+        "state": "closed",
+        "service": "LDAPS",
+        "banner": ""
+      },
+      {
+        "port": 646,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 873,
+        "state": "closed",
+        "service": "rsync",
+        "banner": ""
+      },
+      {
+        "port": 990,
+        "state": "closed",
+        "service": "FTPS",
+        "banner": ""
+      },
+      {
+        "port": 993,
+        "state": "closed",
+        "service": "IMAPS",
+        "banner": ""
+      },
+      {
+        "port": 995,
+        "state": "closed",
+        "service": "POP3S",
+        "banner": ""
+      },
+      {
+        "port": 1025,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 1026,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 1027,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 1028,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 1029,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 1110,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 1433,
+        "state": "closed",
+        "service": "MSSQL",
+        "banner": ""
+      },
+      {
+        "port": 1720,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 1723,
+        "state": "closed",
+        "service": "PPTP",
+        "banner": ""
+      },
+      {
+        "port": 1755,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 1900,
+        "state": "closed",
+        "service": "UPnP",
+        "banner": ""
+      },
+      {
+        "port": 2000,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 2001,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 2049,
+        "state": "closed",
+        "service": "NFS",
+        "banner": ""
+      },
+      {
+        "port": 2121,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 2717,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 3000,
+        "state": "closed",
+        "service": "Node/Dev",
+        "banner": ""
+      },
+      {
+        "port": 3128,
+        "state": "closed",
+        "service": "Squid",
+        "banner": ""
+      },
+      {
+        "port": 3306,
+        "state": "closed",
+        "service": "MySQL",
+        "banner": ""
+      },
+      {
+        "port": 3389,
+        "state": "closed",
+        "service": "RDP",
+        "banner": ""
+      },
+      {
+        "port": 3986,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 4899,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 5000,
+        "state": "closed",
+        "service": "Flask/Dev",
+        "banner": ""
+      },
+      {
+        "port": 5009,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 5051,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 5060,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 5101,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 5190,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 5357,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 5432,
+        "state": "closed",
+        "service": "PostgreSQL",
+        "banner": ""
+      },
+      {
+        "port": 5631,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 5666,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 5800,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 5900,
+        "state": "closed",
+        "service": "VNC",
+        "banner": ""
+      },
+      {
+        "port": 5901,
+        "state": "closed",
+        "service": "VNC-1",
+        "banner": ""
+      },
+      {
+        "port": 6000,
+        "state": "closed",
+        "service": "X11",
+        "banner": ""
+      },
+      {
+        "port": 6001,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 6646,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 7070,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 8000,
+        "state": "closed",
+        "service": "HTTP-Alt",
+        "banner": ""
+      },
+      {
+        "port": 8008,
+        "state": "closed",
+        "service": "HTTP-Alt",
+        "banner": ""
+      },
+      {
+        "port": 8009,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 8080,
+        "state": "closed",
+        "service": "HTTP-Proxy",
+        "banner": ""
+      },
+      {
+        "port": 8081,
+        "state": "closed",
+        "service": "HTTP-Alt",
+        "banner": ""
+      },
+      {
+        "port": 8443,
+        "state": "closed",
+        "service": "HTTPS-Alt",
+        "banner": ""
+      },
+      {
+        "port": 8888,
+        "state": "closed",
+        "service": "HTTP-Alt",
+        "banner": ""
+      },
+      {
+        "port": 9090,
+        "state": "closed",
+        "service": "WebConsole",
+        "banner": ""
+      },
+      {
+        "port": 9100,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 9200,
+        "state": "closed",
+        "service": "Elasticsearch",
+        "banner": ""
+      },
+      {
+        "port": 9999,
+        "state": "closed",
+        "service": "HTTP-Alt",
+        "banner": ""
+      },
+      {
+        "port": 10000,
+        "state": "closed",
+        "service": "Webmin",
+        "banner": ""
+      },
+      {
+        "port": 10443,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 11211,
+        "state": "closed",
+        "service": "Memcached",
+        "banner": ""
+      },
+      {
+        "port": 27017,
+        "state": "closed",
+        "service": "MongoDB",
+        "banner": ""
+      },
+      {
+        "port": 27018,
+        "state": "closed",
+        "service": "MongoDB",
+        "banner": ""
+      },
+      {
+        "port": 28017,
+        "state": "closed",
+        "service": "MongoDB-Web",
+        "banner": ""
+      },
+      {
+        "port": 32768,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 49152,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 49153,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 49154,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 49155,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 49156,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      },
+      {
+        "port": 49157,
+        "state": "closed",
+        "service": "unknown",
+        "banner": ""
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Google Analytics",
+        "confidence": 60,
+        "evidence": [
+          "Body: google-analytics.com",
+          "Body: UA-"
+        ]
+      },
+      {
+        "name": "Apache",
+        "confidence": 50,
+        "evidence": [
+          "Header: Apache"
+        ]
+      }
+    ],
+    "headers": {
+      "raw_headers": {
+        "Date": "Sat, 16 May 2026 20:24:31 GMT",
+        "Server": "Apache/2.4.7 (Ubuntu)",
+        "Accept-Ranges": "bytes",
+        "Vary": "Accept-Encoding",
+        "Content-Encoding": "gzip",
+        "Content-Length": "2068",
+        "Keep-Alive": "timeout=5, max=100",
+        "Connection": "Keep-Alive",
+        "Content-Type": "text/html"
+      },
+      "missing": [
+        {
+          "header": "Strict-Transport-Security",
+          "severity": "HIGH",
+          "description": "HTTP Strict Transport Security (HSTS)",
+          "recommendation": "Add 'Strict-Transport-Security: max-age=31536000; includeSubDomains' header"
+        },
+        {
+          "header": "Content-Security-Policy",
+          "severity": "MEDIUM",
+          "description": "Content Security Policy (CSP)",
+          "recommendation": "Implement a Content-Security-Policy header to prevent XSS and data injection attacks"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "severity": "LOW",
+          "description": "X-Content-Type-Options",
+          "recommendation": "Add 'X-Content-Type-Options: nosniff' header"
+        },
+        {
+          "header": "X-Frame-Options",
+          "severity": "MEDIUM",
+          "description": "X-Frame-Options (Clickjacking Protection)",
+          "recommendation": "Add 'X-Frame-Options: DENY' or 'SAMEORIGIN' header"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "severity": "LOW",
+          "description": "X-XSS-Protection",
+          "recommendation": "Add 'X-XSS-Protection: 1; mode=block' header"
+        },
+        {
+          "header": "Referrer-Policy",
+          "severity": "LOW",
+          "description": "Referrer Policy",
+          "recommendation": "Add 'Referrer-Policy: strict-origin-when-cross-origin' header"
+        },
+        {
+          "header": "Permissions-Policy",
+          "severity": "LOW",
+          "description": "Permissions Policy (formerly Feature-Policy)",
+          "recommendation": "Add Permissions-Policy header to control browser features"
+        },
+        {
+          "header": "X-Permitted-Cross-Domain-Policies",
+          "severity": "LOW",
+          "description": "Cross-Domain Policy",
+          "recommendation": "Add 'X-Permitted-Cross-Domain-Policies: none' header"
+        }
+      ],
+      "findings": [
+        {
+          "title": "Missing Strict-Transport-Security Header",
+          "severity": "HIGH",
+          "description": "HTTP Strict Transport Security (HSTS)",
+          "recommendation": "Add 'Strict-Transport-Security: max-age=31536000; includeSubDomains' header"
+        },
+        {
+          "title": "Missing Content-Security-Policy Header",
+          "severity": "MEDIUM",
+          "description": "Content Security Policy (CSP)",
+          "recommendation": "Implement a Content-Security-Policy header to prevent XSS and data injection attacks"
+        },
+        {
+          "title": "Missing X-Content-Type-Options Header",
+          "severity": "LOW",
+          "description": "X-Content-Type-Options",
+          "recommendation": "Add 'X-Content-Type-Options: nosniff' header"
+        },
+        {
+          "title": "Missing X-Frame-Options Header",
+          "severity": "MEDIUM",
+          "description": "X-Frame-Options (Clickjacking Protection)",
+          "recommendation": "Add 'X-Frame-Options: DENY' or 'SAMEORIGIN' header"
+        },
+        {
+          "title": "Missing X-XSS-Protection Header",
+          "severity": "LOW",
+          "description": "X-XSS-Protection",
+          "recommendation": "Add 'X-XSS-Protection: 1; mode=block' header"
+        },
+        {
+          "title": "Missing Referrer-Policy Header",
+          "severity": "LOW",
+          "description": "Referrer Policy",
+          "recommendation": "Add 'Referrer-Policy: strict-origin-when-cross-origin' header"
+        },
+        {
+          "title": "Missing Permissions-Policy Header",
+          "severity": "LOW",
+          "description": "Permissions Policy (formerly Feature-Policy)",
+          "recommendation": "Add Permissions-Policy header to control browser features"
+        },
+        {
+          "title": "Missing X-Permitted-Cross-Domain-Policies Header",
+          "severity": "LOW",
+          "description": "Cross-Domain Policy",
+          "recommendation": "Add 'X-Permitted-Cross-Domain-Policies: none' header"
+        },
+        {
+          "title": "Information Disclosure: Server",
+          "severity": "LOW",
+          "description": "Server version disclosed: Apache/2.4.7 (Ubuntu)",
+          "recommendation": "Remove or obfuscate the Server header"
+        }
+      ],
+      "server_info": {
+        "status_code": 200,
+        "server": "Apache/2.4.7 (Ubuntu)",
+        "powered_by": "Not disclosed",
+        "content_type": "text/html"
+      }
+    },
+    "dns": {
+      "A": [
+        "45.33.32.156"
+      ],
+      "AAAA": [
+        "2600:3c01::f03c:91ff:fe18:bb2f"
+      ],
+      "PTR": [
+        {
+          "ip": "45.33.32.156",
+          "hostname": "scanme.nmap.org"
+        }
+      ]
+    },
+    "whois": {
+      "domain_name": "nmap.org",
+      "registrar": "DYNADOT LLC",
+      "creation_date": "1999-01-18 05:00:00+00:00",
+      "expiration_date": "2029-01-18 05:00:00+00:00",
+      "updated_date": "2026-04-10 17:35:09+00:00",
+      "name_servers": [
+        "ns1.linode.com",
+        "ns2.linode.com",
+        "ns3.linode.com",
+        "ns4.linode.com",
+        "ns5.linode.com"
+      ],
+      "status": "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
+      "emails": "abuse@dynadot.com",
+      "org": "Super Privacy Service LTD c/o Dynadot",
+      "country": "US",
+      "state": "California",
+      "city": "San Mateo"
+    }
+  },
+  "crawler": {
+    "urls": [
+      "http://scanme.nmap.org"
+    ],
+    "js_files": [
+      "http://scanme.nmap.org/shared/js/nst.js?v=2"
+    ],
+    "parameters": [
+      {
+        "name": "q",
+        "sources": [
+          "Form"
+        ],
+        "methods": [
+          "GET"
+        ],
+        "sample_values": []
+      }
+    ],
+    "forms": [
+      {
+        "action": "http://scanme.nmap.org/search/",
+        "method": "GET",
+        "inputs": [
+          {
+            "name": "q",
+            "type": "search",
+            "value": ""
+          }
+        ],
+        "page": "http://scanme.nmap.org"
+      },
+      {
+        "action": "http://scanme.nmap.org/search/",
+        "method": "GET",
+        "inputs": [
+          {
+            "name": "q",
+            "type": "search",
+            "value": ""
+          }
+        ],
+        "page": "http://scanme.nmap.org"
+      }
+    ],
+    "directories": [
+      {
+        "path": "/images",
+        "url": "http://scanme.nmap.org/images",
+        "status_code": 301,
+        "content_type": "text/html; charset=iso-8859-1",
+        "content_length": 318,
+        "redirect": "http://scanme.nmap.org/images/"
+      },
+      {
+        "path": "/.htaccess",
+        "url": "http://scanme.nmap.org/.htaccess",
+        "status_code": 403,
+        "content_type": "text/html; charset=iso-8859-1",
+        "content_length": 291,
+        "redirect": ""
+      },
+      {
+        "path": "/.htpasswd",
+        "url": "http://scanme.nmap.org/.htpasswd",
+        "status_code": 403,
+        "content_type": "text/html; charset=iso-8859-1",
+        "content_length": 291,
+        "redirect": ""
+      }
+    ]
+  },
+  "vulnerabilities": [
+    {
+      "title": "Clickjacking - Missing Frame Protection",
+      "severity": "MEDIUM",
+      "source": "Custom",
+      "detail": "No X-Frame-Options or CSP frame-ancestors directive",
+      "url": "http://scanme.nmap.org",
+      "recommendation": "Add X-Frame-Options: DENY header"
+    },
+    {
+      "title": "Missing Security Header: Strict-Transport-Security",
+      "severity": "HIGH",
+      "source": "Custom",
+      "detail": "HTTP Strict Transport Security (HSTS)",
+      "url": "http://scanme.nmap.org",
+      "recommendation": "Add 'Strict-Transport-Security: max-age=31536000; includeSubDomains' header"
+    },
+    {
+      "title": "Missing Security Header: Content-Security-Policy",
+      "severity": "MEDIUM",
+      "source": "Custom",
+      "detail": "Content Security Policy (CSP)",
+      "url": "http://scanme.nmap.org",
+      "recommendation": "Implement a Content-Security-Policy header to prevent XSS and data injection attacks"
+    },
+    {
+      "title": "Missing Security Header: X-Content-Type-Options",
+      "severity": "LOW",
+      "source": "Custom",
+      "detail": "X-Content-Type-Options",
+      "url": "http://scanme.nmap.org",
+      "recommendation": "Add 'X-Content-Type-Options: nosniff' header"
+    },
+    {
+      "title": "Missing Security Header: X-Frame-Options",
+      "severity": "MEDIUM",
+      "source": "Custom",
+      "detail": "X-Frame-Options (Clickjacking Protection)",
+      "url": "http://scanme.nmap.org",
+      "recommendation": "Add 'X-Frame-Options: DENY' or 'SAMEORIGIN' header"
+    },
+    {
+      "title": "Missing Security Header: X-XSS-Protection",
+      "severity": "LOW",
+      "source": "Custom",
+      "detail": "X-XSS-Protection",
+      "url": "http://scanme.nmap.org",
+      "recommendation": "Add 'X-XSS-Protection: 1; mode=block' header"
+    },
+    {
+      "title": "Missing Security Header: Referrer-Policy",
+      "severity": "LOW",
+      "source": "Custom",
+      "detail": "Referrer Policy",
+      "url": "http://scanme.nmap.org",
+      "recommendation": "Add 'Referrer-Policy: strict-origin-when-cross-origin' header"
+    },
+    {
+      "title": "Missing Security Header: Permissions-Policy",
+      "severity": "LOW",
+      "source": "Custom",
+      "detail": "Permissions Policy (formerly Feature-Policy)",
+      "url": "http://scanme.nmap.org",
+      "recommendation": "Add Permissions-Policy header to control browser features"
+    },
+    {
+      "title": "Missing Security Header: X-Permitted-Cross-Domain-Policies",
+      "severity": "LOW",
+      "source": "Custom",
+      "detail": "Cross-Domain Policy",
+      "url": "http://scanme.nmap.org",
+      "recommendation": "Add 'X-Permitted-Cross-Domain-Policies: none' header"
+    }
+  ],
+  "statistics": {
+    "scan_duration": "61.6s",
+    "total_subdomains": 1,
+    "total_open_ports": 2,
+    "total_technologies": 2,
+    "total_urls_crawled": 1,
+    "total_js_files": 1,
+    "total_parameters": 1,
+    "total_directories": 3,
+    "total_vulnerabilities": 9,
+    "severity_breakdown": {
+      "MEDIUM": 3,
+      "HIGH": 1,
+      "LOW": 5
+    }
+  },
+  "exported_at": "2026-05-17T02:23:45.590203"
+}

@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  charlie_recon:
+    build: .
+    container_name: charlie_recon
+    volumes:
+      - ./charlie_recon_output:/app/charlie_recon_output
+    network_mode: host
+    stdin_open: true
+    tty: true
+    # Usage: docker compose run charlie_recon -t example.com

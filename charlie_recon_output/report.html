@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recon47 Report - scanme.nmap.org</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0f;--surface:#0f1117;--surface2:#161922;--border:#1e2230;--green:#00ff41;--red:#ff0040;--blue:#00d4ff;--amber:#ffaa00;--purple:#a855f7;--text:#e0e0e0;--dim:#666}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.6;overflow-x:hidden}
+.scanline{position:fixed;top:0;left:0;width:100%;height:2px;background:var(--green);opacity:0.3;z-index:9999;animation:scanline 4s linear infinite}
+@keyframes scanline{0%{top:0}100%{top:100vh}}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+h1,h2,h3{font-family:'Orbitron',sans-serif}
+.header{text-align:center;padding:40px 0 20px;border-bottom:1px solid var(--border)}
+.header h1{font-size:2.2em;color:var(--green);text-shadow:0 0 20px rgba(0,255,65,0.3);margin-bottom:8px}
+.header .subtitle{color:var(--dim);font-size:0.9em}
+.header .target-badge{display:inline-block;background:rgba(0,255,65,0.1);border:1px solid var(--green);padding:6px 20px;border-radius:4px;margin-top:12px;color:var(--green);font-size:1em}
+nav{display:flex;flex-wrap:wrap;gap:8px;padding:16px 0;border-bottom:1px solid var(--border);margin-bottom:24px}
+nav a{color:var(--dim);text-decoration:none;padding:6px 14px;border:1px solid var(--border);border-radius:4px;font-size:0.8em;transition:all .2s}
+nav a:hover{color:var(--green);border-color:var(--green);background:rgba(0,255,65,0.05)}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:28px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px;text-align:center;transition:border-color .2s}
+.stat-card:hover{border-color:var(--green)}
+.stat-card .value{font-family:'Orbitron',sans-serif;font-size:1.8em;color:var(--green)}
+.stat-card .label{font-size:0.75em;color:var(--dim);margin-top:4px}
+.section{margin-bottom:28px}
+.section-title{font-size:1.1em;color:var(--blue);padding:10px 0;border-bottom:1px solid var(--border);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:0.85em}
+th{background:var(--surface);color:var(--green);padding:10px 12px;text-align:left;border:1px solid var(--border);font-weight:500;text-transform:uppercase;font-size:0.75em;letter-spacing:1px}
+td{padding:8px 12px;border:1px solid var(--border);vertical-align:top;word-break:break-word}
+tr:nth-child(even){background:rgba(255,255,255,0.01)}
+tr:hover{background:rgba(0,255,65,0.02)}
+.badge{display:inline-block;padding:2px 10px;border-radius:3px;font-size:0.75em;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.badge-critical{background:rgba(255,0,64,0.15);color:#ff0040;border:1px solid rgba(255,0,64,0.3)}
+.badge-high{background:rgba(255,68,68,0.15);color:#ff4444;border:1px solid rgba(255,68,68,0.3)}
+.badge-medium{background:rgba(255,170,0,0.15);color:#ffaa00;border:1px solid rgba(255,170,0,0.3)}
+.badge-low{background:rgba(0,212,255,0.15);color:#00d4ff;border:1px solid rgba(0,212,255,0.3)}
+.badge-info{background:rgba(136,136,136,0.15);color:#888;border:1px solid rgba(136,136,136,0.3)}
+.vuln-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;margin-bottom:10px;overflow:hidden}
+.vuln-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;cursor:pointer;transition:background .2s}
+.vuln-header:hover{background:var(--surface2)}
+.vuln-header .title{font-weight:500}
+.vuln-body{padding:12px 16px;border-top:1px solid var(--border);display:none;font-size:0.85em}
+.vuln-body.open{display:block}
+.vuln-body p{margin-bottom:6px}
+.vuln-body .label{color:var(--dim);font-size:0.8em}
+.chart-container{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px;margin-bottom:28px;display:flex;justify-content:center;align-items:center;gap:30px;flex-wrap:wrap}
+.donut-chart{position:relative;width:200px;height:200px}
+.donut-chart canvas{width:200px;height:200px}
+.chart-legend{display:flex;flex-direction:column;gap:8px}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:0.8em}
+.legend-dot{width:12px;height:12px;border-radius:2px}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px}
+.info-card h4{color:var(--green);font-size:0.8em;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.info-card p,.info-card li{font-size:0.85em;color:var(--text);margin-bottom:4px}
+.info-card ul{list-style:none;padding:0}
+.info-card ul li::before{content:"▸ ";color:var(--green)}
+.tag{display:inline-block;background:var(--surface2);border:1px solid var(--border);padding:1px 8px;border-radius:3px;font-size:0.75em;margin:2px}
+.footer{text-align:center;padding:30px 0;border-top:1px solid var(--border);color:var(--dim);font-size:0.8em}
+.collapsible{cursor:pointer;user-select:none}
+.collapsible::after{content:" ▸";color:var(--green)}
+.collapsible.active::after{content:" ▾"}
+.btn{display:inline-block;padding:8px 18px;border:1px solid var(--green);border-radius:4px;color:var(--green);background:rgba(0,255,65,0.05);cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:0.8em;transition:all .2s;text-decoration:none}
+.btn:hover{background:rgba(0,255,65,0.15);box-shadow:0 0 12px rgba(0,255,65,0.2)}
+.btn-red{border-color:var(--red);color:var(--red);background:rgba(255,0,64,0.05)}
+.btn-red:hover{background:rgba(255,0,64,0.15)}
+@media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}.info-grid{grid-template-columns:1fr}.chart-container{flex-direction:column}}
+@media print{.scanline,.no-print{display:none!important}body{background:#fff;color:#000;font-size:11px}th{background:#eee;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}.container{max-width:100%}.badge{border:1px solid #333;color:#000;background:#eee;-webkit-print-color-adjust:exact;print-color-adjust:exact}.vuln-body{display:block!important}.collapsible-content{display:block!important}.stat-card{border:1px solid #ccc}.stat-card .value{color:#000}.header h1{color:#000;text-shadow:none}.section-title{color:#000}nav{display:none}}
+</style>
+</head>
+<body>
+<div class="scanline"></div>
+<div class="container">
+  
+<div class="header">
+  <h1>🔱 RECON47</h1>
+  <p class="subtitle">Automated Reconnaissance & Vulnerability Assessment Report</p>
+  <div class="target-badge">⎯ scanme.nmap.org ⎯</div>
+  <p class="subtitle" style="margin-top:10px">
+    2026-05-17 02:22:47 | v1.0.0 | Author: Xaff
+  </p>
+</div>
+  
+<nav>
+  <a href="#stats">Dashboard</a>
+  <a href="#target">Target</a>
+  <a href="#recon">Reconnaissance</a>
+  <a href="#crawler">Crawler</a>
+  <a href="#vulns">Vulnerabilities</a>
+  <a href="#" class="btn no-print" onclick="expandAll();return false">Expand All</a>
+  <a href="#" class="btn btn-red no-print" onclick="downloadPDF();return false">Download PDF</a>
+</nav>
+  
+<div id="stats" class="section">
+  <h2 class="section-title">📊 Dashboard</h2>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="value">1</div><div class="label">Subdomains</div></div>
+    <div class="stat-card"><div class="value">2</div><div class="label">Open Ports</div></div>
+    <div class="stat-card"><div class="value">2</div><div class="label">Technologies</div></div>
+    <div class="stat-card"><div class="value">1</div><div class="label">URLs Crawled</div></div>
+    <div class="stat-card"><div class="value">3</div><div class="label">Directories</div></div>
+    <div class="stat-card"><div class="value" style="color:var(--red)">9</div><div class="label">Vulnerabilities</div></div>
+    <div class="stat-card"><div class="value">1</div><div class="label">Parameters</div></div>
+    <div class="stat-card"><div class="value">61.6s</div><div class="label">Duration</div></div>
+  </div>
+</div>
+  
+<div class="chart-container">
+  <div class="donut-chart"><canvas id="vulnChart" width="200" height="200"></canvas></div>
+  <div class="chart-legend"><div class="legend-item"><div class="legend-dot" style="background:#ff4444"></div>HIGH: 1</div><div class="legend-item"><div class="legend-dot" style="background:#ffaa00"></div>MEDIUM: 3</div><div class="legend-item"><div class="legend-dot" style="background:#00d4ff"></div>LOW: 5</div></div>
+</div>
+  
+<div id="target" class="section">
+  <h2 class="section-title">🎯 Target Information</h2>
+  <table><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody><tr><td><strong>Domain</strong></td><td>scanme.nmap.org</td></tr><tr><td><strong>Ip</strong></td><td>45.33.32.156</td></tr><tr><td><strong>Url</strong></td><td>http://scanme.nmap.org</td></tr><tr><td><strong>Target Type</strong></td><td>domain</td></tr><tr><td><strong>Scheme</strong></td><td>http</td></tr></tbody></table>
+</div>
+  <div id="recon" class="section"><h2 class="section-title">🔍 Reconnaissance</h2><h3 class="collapsible" onclick="toggle(this)">Subdomains (1)</h3>
+<div class="collapsible-content"><table><thead><tr><th>Subdomain</th><th>IP</th><th>Status</th></tr></thead><tbody><tr><td>scanme.nmap.org</td><td>45.33.32.156</td><td>active</td></tr></tbody></table></div>
+<h3 class="collapsible" onclick="toggle(this)">Open Ports (2)</h3>
+<div class="collapsible-content"><table><thead><tr><th>Port</th><th>State</th><th>Service</th><th>Banner</th></tr></thead><tbody><tr><td>22</td><td><span class='badge badge-high'>OPEN</span></td><td>SSH</td><td>SSH-2.0-OpenSSH_6.6.1p1 Ubuntu-2ubuntu2.13</td></tr><tr><td>80</td><td><span class='badge badge-high'>OPEN</span></td><td>HTTP</td><td>HTTP/1.1 200 OK</td></tr></tbody></table></div>
+<h3 class="collapsible" onclick="toggle(this)">Technologies (2)</h3>
+<div class="collapsible-content"><table><thead><tr><th>Technology</th><th>Confidence</th><th>Evidence</th></tr></thead><tbody><tr><td>Google Analytics</td><td>60%</td><td>Body: google-analytics.com, Body: UA-</td></tr><tr><td>Apache</td><td>50%</td><td>Header: Apache</td></tr></tbody></table></div>
+<h3 class="collapsible" onclick="toggle(this)">DNS Records</h3>
+<div class="collapsible-content"><table><thead><tr><th>Type</th><th>Value</th></tr></thead><tbody><tr><td>A</td><td>45.33.32.156</td></tr><tr><td>AAAA</td><td>2600:3c01::f03c:91ff:fe18:bb2f</td></tr><tr><td>PTR</td><td>{&quot;ip&quot;: &quot;45.33.32.156&quot;, &quot;hostname&quot;: &quot;scanme.nmap.org&quot;}</td></tr></tbody></table></div>
+<h3 class="collapsible" onclick="toggle(this)">WHOIS Information</h3>
+<div class="collapsible-content"><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Domain Name</td><td>nmap.org</td></tr><tr><td>Registrar</td><td>DYNADOT LLC</td></tr><tr><td>Creation Date</td><td>1999-01-18 05:00:00+00:00</td></tr><tr><td>Expiration Date</td><td>2029-01-18 05:00:00+00:00</td></tr><tr><td>Updated Date</td><td>2026-04-10 17:35:09+00:00</td></tr><tr><td>Name Servers</td><td>[&#x27;ns1.linode.com&#x27;, &#x27;ns2.linode.com&#x27;, &#x27;ns3.linode.com&#x27;, &#x27;ns4.linode.com&#x27;, &#x27;ns5.linode.com&#x27;]</td></tr><tr><td>Status</td><td>clientTransferProhibited https://icann.org/epp#clientTransferProhibited</td></tr><tr><td>Emails</td><td>abuse@dynadot.com</td></tr><tr><td>Org</td><td>Super Privacy Service LTD c/o Dynadot</td></tr><tr><td>Country</td><td>US</td></tr><tr><td>State</td><td>California</td></tr><tr><td>City</td><td>San Mateo</td></tr></tbody></table></div>
+<h3 class="collapsible" onclick="toggle(this)">Security Headers</h3>
+<div class="collapsible-content"><table><thead><tr><th>Header</th><th>Status</th><th>Detail</th></tr></thead><tbody><tr><td>Strict-Transport-Security</td><td><span class='badge badge-high'>MISSING</span></td><td>Add &#x27;Strict-Transport-Security: max-age=31536000; includeSubDomains&#x27; header</td></tr><tr><td>Content-Security-Policy</td><td><span class='badge badge-medium'>MISSING</span></td><td>Implement a Content-Security-Policy header to prevent XSS and data injection attacks</td></tr><tr><td>X-Content-Type-Options</td><td><span class='badge badge-low'>MISSING</span></td><td>Add &#x27;X-Content-Type-Options: nosniff&#x27; header</td></tr><tr><td>X-Frame-Options</td><td><span class='badge badge-medium'>MISSING</span></td><td>Add &#x27;X-Frame-Options: DENY&#x27; or &#x27;SAMEORIGIN&#x27; header</td></tr><tr><td>X-XSS-Protection</td><td><span class='badge badge-low'>MISSING</span></td><td>Add &#x27;X-XSS-Protection: 1; mode=block&#x27; header</td></tr><tr><td>Referrer-Policy</td><td><span class='badge badge-low'>MISSING</span></td><td>Add &#x27;Referrer-Policy: strict-origin-when-cross-origin&#x27; header</td></tr><tr><td>Permissions-Policy</td><td><span class='badge badge-low'>MISSING</span></td><td>Add Permissions-Policy header to control browser features</td></tr><tr><td>X-Permitted-Cross-Domain-Policies</td><td><span class='badge badge-low'>MISSING</span></td><td>Add &#x27;X-Permitted-Cross-Domain-Policies: none&#x27; header</td></tr></tbody></table></div></div>
+  <div id="crawler" class="section"><h2 class="section-title">🕷️ Crawling & Discovery</h2><h3 class="collapsible" onclick="toggle(this)">Crawled URLs (1)</h3>
+<div class="collapsible-content"><table><thead><tr><th>URL</th></tr></thead><tbody><tr><td>http://scanme.nmap.org</td></tr></tbody></table></div>
+<h3 class="collapsible" onclick="toggle(this)">Directories (3)</h3>
+<div class="collapsible-content"><table><thead><tr><th>Path</th><th>Status</th><th>Type</th></tr></thead><tbody><tr><td>/images</td><td>301</td><td>text/html; charset=iso-8859-1</td></tr><tr><td>/.htaccess</td><td>403</td><td>text/html; charset=iso-8859-1</td></tr><tr><td>/.htpasswd</td><td>403</td><td>text/html; charset=iso-8859-1</td></tr></tbody></table></div>
+<h3 class="collapsible" onclick="toggle(this)">JavaScript Files (1)</h3>
+<div class="collapsible-content"><table><thead><tr><th>URL</th></tr></thead><tbody><tr><td>http://scanme.nmap.org/shared/js/nst.js?v=2</td></tr></tbody></table></div>
+<h3 class="collapsible" onclick="toggle(this)">Parameters (1)</h3>
+<div class="collapsible-content"><table><thead><tr><th>Name</th><th>Source</th><th>Methods</th></tr></thead><tbody><tr><td>q</td><td>Form</td><td>GET</td></tr></tbody></table></div></div>
+  <div id="vulns" class="section"><h2 class="section-title">⚡ Vulnerabilities (9)</h2>
+<div class="vuln-card">
+  <div class="vuln-header" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span class="title">Missing Security Header: Strict-Transport-Security</span>
+    <span class="badge badge-high">HIGH</span>
+  </div>
+  <div class="vuln-body"><p><span class='label'>Detail:</span> HTTP Strict Transport Security (HSTS)</p><p><span class='label'>URL:</span> http://scanme.nmap.org</p><p><span class='label'>Fix:</span> Add &#x27;Strict-Transport-Security: max-age=31536000; includeSubDomains&#x27; header</p><p><span class='label'>Source:</span> Custom</p></div>
+</div>
+<div class="vuln-card">
+  <div class="vuln-header" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span class="title">Clickjacking - Missing Frame Protection</span>
+    <span class="badge badge-medium">MEDIUM</span>
+  </div>
+  <div class="vuln-body"><p><span class='label'>Detail:</span> No X-Frame-Options or CSP frame-ancestors directive</p><p><span class='label'>URL:</span> http://scanme.nmap.org</p><p><span class='label'>Fix:</span> Add X-Frame-Options: DENY header</p><p><span class='label'>Source:</span> Custom</p></div>
+</div>
+<div class="vuln-card">
+  <div class="vuln-header" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span class="title">Missing Security Header: Content-Security-Policy</span>
+    <span class="badge badge-medium">MEDIUM</span>
+  </div>
+  <div class="vuln-body"><p><span class='label'>Detail:</span> Content Security Policy (CSP)</p><p><span class='label'>URL:</span> http://scanme.nmap.org</p><p><span class='label'>Fix:</span> Implement a Content-Security-Policy header to prevent XSS and data injection attacks</p><p><span class='label'>Source:</span> Custom</p></div>
+</div>
+<div class="vuln-card">
+  <div class="vuln-header" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span class="title">Missing Security Header: X-Frame-Options</span>
+    <span class="badge badge-medium">MEDIUM</span>
+  </div>
+  <div class="vuln-body"><p><span class='label'>Detail:</span> X-Frame-Options (Clickjacking Protection)</p><p><span class='label'>URL:</span> http://scanme.nmap.org</p><p><span class='label'>Fix:</span> Add &#x27;X-Frame-Options: DENY&#x27; or &#x27;SAMEORIGIN&#x27; header</p><p><span class='label'>Source:</span> Custom</p></div>
+</div>
+<div class="vuln-card">
+  <div class="vuln-header" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span class="title">Missing Security Header: X-Content-Type-Options</span>
+    <span class="badge badge-low">LOW</span>
+  </div>
+  <div class="vuln-body"><p><span class='label'>Detail:</span> X-Content-Type-Options</p><p><span class='label'>URL:</span> http://scanme.nmap.org</p><p><span class='label'>Fix:</span> Add &#x27;X-Content-Type-Options: nosniff&#x27; header</p><p><span class='label'>Source:</span> Custom</p></div>
+</div>
+<div class="vuln-card">
+  <div class="vuln-header" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span class="title">Missing Security Header: X-XSS-Protection</span>
+    <span class="badge badge-low">LOW</span>
+  </div>
+  <div class="vuln-body"><p><span class='label'>Detail:</span> X-XSS-Protection</p><p><span class='label'>URL:</span> http://scanme.nmap.org</p><p><span class='label'>Fix:</span> Add &#x27;X-XSS-Protection: 1; mode=block&#x27; header</p><p><span class='label'>Source:</span> Custom</p></div>
+</div>
+<div class="vuln-card">
+  <div class="vuln-header" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span class="title">Missing Security Header: Referrer-Policy</span>
+    <span class="badge badge-low">LOW</span>
+  </div>
+  <div class="vuln-body"><p><span class='label'>Detail:</span> Referrer Policy</p><p><span class='label'>URL:</span> http://scanme.nmap.org</p><p><span class='label'>Fix:</span> Add &#x27;Referrer-Policy: strict-origin-when-cross-origin&#x27; header</p><p><span class='label'>Source:</span> Custom</p></div>
+</div>
+<div class="vuln-card">
+  <div class="vuln-header" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span class="title">Missing Security Header: Permissions-Policy</span>
+    <span class="badge badge-low">LOW</span>
+  </div>
+  <div class="vuln-body"><p><span class='label'>Detail:</span> Permissions Policy (formerly Feature-Policy)</p><p><span class='label'>URL:</span> http://scanme.nmap.org</p><p><span class='label'>Fix:</span> Add Permissions-Policy header to control browser features</p><p><span class='label'>Source:</span> Custom</p></div>
+</div>
+<div class="vuln-card">
+  <div class="vuln-header" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span class="title">Missing Security Header: X-Permitted-Cross-Domain-Policies</span>
+    <span class="badge badge-low">LOW</span>
+  </div>
+  <div class="vuln-body"><p><span class='label'>Detail:</span> Cross-Domain Policy</p><p><span class='label'>URL:</span> http://scanme.nmap.org</p><p><span class='label'>Fix:</span> Add &#x27;X-Permitted-Cross-Domain-Policies: none&#x27; header</p><p><span class='label'>Source:</span> Custom</p></div>
+</div></div>
+  
+<div class="footer">
+  <p>🔱 Generated by Recon47 v1.0.0 | Author: Xaff</p>
+  <p>Report generated: 2026-05-17 02:22:47</p>
+  <p style="margin-top:8px;color:var(--dim)">⚠ This report is for authorized security testing only.</p>
+</div>
+</div>
+<script>
+function toggle(el){el.classList.toggle('active');var c=el.nextElementSibling;c.style.display=c.style.display==='none'?'block':'none'}
+function expandAll(){document.querySelectorAll('.collapsible-content').forEach(function(e){e.style.display='block'});document.querySelectorAll('.collapsible').forEach(function(e){e.classList.add('active')});document.querySelectorAll('.vuln-body').forEach(function(e){e.classList.add('open')})}
+function downloadPDF(){expandAll();setTimeout(function(){window.print()},400)}
+document.querySelectorAll('.collapsible-content').forEach(function(e){e.style.display='none'});
+(function(){
+  var canvas=document.getElementById('vulnChart');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d');
+  var data=[0,1,3,5,0];
+  var colors=['#ff0040','#ff4444','#ffaa00','#00d4ff','#888888'];
+  var total=data.reduce(function(a,b){return a+b},0);
+  if(total===0)return;
+  var cx=100,cy=100,r=80,ir=50,start=-Math.PI/2;
+  for(var i=0;i<data.length;i++){
+    if(data[i]===0)continue;
+    var slice=2*Math.PI*data[i]/total;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,start,start+slice);ctx.closePath();
+    ctx.fillStyle=colors[i];ctx.fill();start+=slice;
+  }
+  ctx.beginPath();ctx.arc(cx,cy,ir,0,2*Math.PI);ctx.fillStyle='#0a0a0f';ctx.fill();
+  ctx.fillStyle='#00ff41';ctx.font='bold 20px Orbitron';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText(total,cx,cy);
+})();</script>
+</body>
+</html>
